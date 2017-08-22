@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class Dron : MonoBehaviour {
     public Transform spawnPos;      //позиция где дрон появился
@@ -21,6 +22,9 @@ public class Dron : MonoBehaviour {
 
     public GameObject moneyGetText;               //префаб текста про получение денег
     Economics economics;
+    bool soundPlay = false;
+
+    public AudioSource clickSound;
 
     private void Start()
     {
@@ -80,9 +84,15 @@ public class Dron : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        if (IsPointerOverUIObject())
+            return;
         //move = false;             //отключил чтобы дрон падал с горизонтальной скоростью
         GetComponentInChildren<Animator>().enabled = true;
         GetComponent<Rigidbody>().useGravity = true;
+
+        if(!soundPlay)
+            clickSound.Play();
+        soundPlay = true;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -116,5 +126,14 @@ public class Dron : MonoBehaviour {
 
         if (Stats.SharedStats.visible)
             Stats.SharedStats.droneTakeDowns.text = SaveManager.SharedInstance.dronesTakeDown + "";
+    }
+
+    private bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 0;
     }
 }

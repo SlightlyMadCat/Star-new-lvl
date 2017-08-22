@@ -25,8 +25,8 @@ public class Game               //КЛАСС ДЛЯ ВСЕХ СОХРАНЕНИ�
     //RENDERING QUALITY
     public bool fog = true;                    //on off fog
     public bool sounds = true;                     //звуки окружения
-    public bool music = true;                      //музыка
-    public bool softShados = false;                 //softness shdows
+    public bool music = true;                      //vSync
+    //public bool softShados = false;                 //softness shdows
     public int timeSet = 0;                     //часть дня
     public int shadowQuality = 1;               //shadow quality
     public float shadowOpacity = 0f;
@@ -39,4 +39,6 @@ public class Game               //КЛАСС ДЛЯ ВСЕХ СОХРАНЕНИ�
     public int languageInt = 0;                     //индекс текущего языка
     public double totalInGameMinutes = 0;           //общее кол-во минут в игре
     public double totalEarnedMoney = 0;             //сколько денег заработано за всю игру
+
+    public bool gameMusic = true;       //только музыка
 }

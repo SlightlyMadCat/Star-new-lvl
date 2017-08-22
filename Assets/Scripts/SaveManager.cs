@@ -5,9 +5,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEngine.UI;
 using GameSparks.Core;
+using UnityEngine.Audio;
 
 public class SaveManager : MonoBehaviour {
     //спислк всех хостелов для сохранов и ля load math
+    public AudioMixer soundMixer;
+
     [HideInInspector]
     public GameObject[] hostels;
 
@@ -252,7 +255,8 @@ public class SaveManager : MonoBehaviour {
         gameSave.fog = shadowToggle.isOn;       //ТЕНИ
         gameSave.sounds = soundsToggle.isOn;
         gameSave.music = musicToggle.isOn;
-        gameSave.softShados = softShadowToggle.isOn;
+        //gameSave.softShados = softShadowToggle.isOn;
+        gameSave.gameMusic = softShadowToggle.isOn;
         gameSave.shadowQuality = qualityDrop.value;
         gameSave.timeSet = timeSetDrop.value;
         gameSave.shadowBlur = blurSlider.value;
@@ -325,7 +329,8 @@ public class SaveManager : MonoBehaviour {
         shadowToggle.isOn = gameLoad.fog;
         soundsToggle.isOn = gameLoad.sounds;
         musicToggle.isOn = gameLoad.music;
-        softShadowToggle.isOn = gameLoad.softShados;
+        //softShadowToggle.isOn = gameLoad.softShados;
+        softShadowToggle.isOn = gameLoad.gameMusic;
         timeSetDrop.value = gameLoad.timeSet;
         qualityDrop.value = gameLoad.shadowQuality;
         opacitySlider.value = gameLoad.shadowOpacity;
@@ -427,6 +432,11 @@ public class SaveManager : MonoBehaviour {
     {
         //todo
         gameSave.sounds = soundsToggle.isOn;
+
+        if (soundsToggle.isOn)
+            soundMixer.SetFloat("SoundsVol", 0);
+        else
+            soundMixer.SetFloat("SoundsVol", -80);
     }
 
     public void SetupMusic()
@@ -448,8 +458,14 @@ public class SaveManager : MonoBehaviour {
 
     public void SetupSoftShadows()
     {
-        gameSave.softShados = softShadowToggle.isOn;
-        demoControl.TogleSoftShadow(softShadowToggle.isOn);
+        //gameSave.softShados = softShadowToggle.isOn;
+        //demoControl.TogleSoftShadow(softShadowToggle.isOn);
+        gameSave.gameMusic = softShadowToggle.isOn;
+
+        if (softShadowToggle.isOn)
+            soundMixer.SetFloat("MusicVol", 0);
+        else
+            soundMixer.SetFloat("MusicVol", -80);
     }
 
     public void SetupTimeSet()

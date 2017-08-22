@@ -15,6 +15,7 @@ public class TouchRecognize : MonoBehaviour {
     //bool canSpawn = false;
     //float numTaps = 0;
     public float addClonePerSec;
+    public float range;
     //для распознавания нажатий на здания
     List<Vector3> startPos = new List<Vector3>();           //точка начала
     //public GameObject marker;
@@ -67,7 +68,7 @@ public class TouchRecognize : MonoBehaviour {
                             }
                         }
 
-                        if (dist < 45)
+                        if (dist < range)
                             BuildingRecognize(_touch);
                     }
                 }

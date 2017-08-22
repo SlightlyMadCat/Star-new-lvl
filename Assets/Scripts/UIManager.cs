@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour {
 
     public static UIManager SharedInstance;
 
+    AudioSource showSound;
    // public float Cd;
     [HideInInspector]
     //public float curCd;
@@ -67,6 +68,7 @@ public class UIManager : MonoBehaviour {
     private void Awake()
     {
         SharedInstance = this;
+        showSound = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -152,6 +154,9 @@ public class UIManager : MonoBehaviour {
 
     public void HideAllScreens(Animator _current)           //СКРЫВАЕТ ВСЕ СКИНЫ КРОМЕ ПАРАМЕТРА
     {
+        //if(SaveManager.SharedInstance.soundsToggle.isOn)
+            showSound.Play();
+
         foreach (Animator _anim in uiAnimators)
         {
             if(_anim != _current)
