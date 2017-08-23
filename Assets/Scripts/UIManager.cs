@@ -124,6 +124,7 @@ public class UIManager : MonoBehaviour {
 
     public void SetHostelUpdAnim()          //set hostel upgrades anim
     {
+        showSound.Play();
         if (hostelUpdState == 0 || hostelUpdState == 2)
         {
             hostelUpdState = 1;

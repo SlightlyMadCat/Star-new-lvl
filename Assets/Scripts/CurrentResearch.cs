@@ -89,13 +89,17 @@ public class CurrentResearch : MonoBehaviour {
             SetDoneSprite();
         }
 
-
-        if (GetComponentInParent<ResearchContainer>()) {
-            if (GetComponentInParent<ResearchContainer>().allResCounter < GetComponentInParent<ResearchContainer>().resIndexes[valueToOpen])
+        if (resCont) {
+            if (resCont.allResCounter < resCont.resIndexes[valueToOpen])
             {
                 buyBtn.interactable = false;
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        SetActiveBtn();
     }
 
     public void GetUpgrade(int _i)          //сюда подключить кнопки с апгрейдами
@@ -111,6 +115,8 @@ public class CurrentResearch : MonoBehaviour {
             economics.GoldenEggUpd(1);
 
             SetProgressBar();       //обновить после покупки прогресс бар и новую цену
+
+            GetComponent<AudioSource>().Play();
         }
     }
 }

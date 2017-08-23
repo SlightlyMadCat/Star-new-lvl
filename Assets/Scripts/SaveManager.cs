@@ -166,7 +166,7 @@ public class SaveManager : MonoBehaviour {
         if (dataReset == false)
         {
 //////////////////////////////////////////////
-            gameSave.totalInGameMinutes = SessionTime();
+            //gameSave.totalInGameMinutes = SessionTime();
 //////////////////////////////////////////////
             for(int i = 0; i < hostels.Length; i++)         
             {
@@ -205,7 +205,7 @@ public class SaveManager : MonoBehaviour {
         {
             //gameSave.currentMissionNum = 0;
             //////////////////////////////////////////////
-            gameSave.totalInGameMinutes = SessionTime();
+            //gameSave.totalInGameMinutes = SessionTime();
             //////////////////////////////////////////////
 
             for (int i = 0; i < 4; i++)         //сброс данных про префаб хостела и вместимость
@@ -288,7 +288,7 @@ public class SaveManager : MonoBehaviour {
         cloneCenter.clonesSpawned = cloneCenter.clonesNum;
 
         lvlManager.SetupLevel(gameLoad.curLevel);
-        gsManager.minutes = gameLoad.totalInGameMinutes;
+        //gsManager.minutes = gameLoad.totalInGameMinutes;
         missions.mission_number = gameLoad.currentMissionNum;
         missions.Setup();
 
@@ -347,6 +347,8 @@ public class SaveManager : MonoBehaviour {
 
         recStdio.silosCount = gameLoad.silosCount;
         recStdio.UpdSilosCount(0);
+
+        boostManager.CheckInteractBtn();
 
         print("ALL DATA WELL DONE");
     }

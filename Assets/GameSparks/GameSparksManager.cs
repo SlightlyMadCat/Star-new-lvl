@@ -32,7 +32,7 @@ public class GameSparksManager : MonoBehaviour
     public Button board;
 
     public GameObject loadingText;
-    public double minutes;
+    //public double minutes;
     public Text totalPlayersNum;
 
     void Awake()
@@ -114,11 +114,11 @@ public class GameSparksManager : MonoBehaviour
     {
         //minutes = SaveManager.SharedInstance.gameLoad.totalInGameMinutes;
         //print(minutes);
-        minutes = SaveManager.SharedInstance.SessionTime();
+        //minutes = SaveManager.SharedInstance.SessionTime();
 
         //count = (1+minutes*0.1f)*(1+level)*(1+totalGold*0.1f)
-        minutes = System.Math.Round(minutes, 2);
-        float score = (float)(1 + minutes * 2) * (1 + levelManager.currentLevel * 10) * (1 + economics.totalGoldCoins);
+        //minutes = System.Math.Round(minutes, 2);
+        float score = (float)(1 + 1 * 2) * (1 + levelManager.currentLevel * 10) * (1 + economics.totalGoldCoins);
         //print((long)score);
 
         new GameSparks.Api.Requests.LogEventRequest()

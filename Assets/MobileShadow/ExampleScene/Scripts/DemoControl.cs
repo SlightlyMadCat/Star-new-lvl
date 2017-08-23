@@ -72,7 +72,7 @@ public class DemoControl : MonoBehaviour
 	            RenderSettings.fogColor = RenderSettings.ambientLight;
                 //MobileShadow.SunLight.color = new Color32(217, 160, 154, 255);
                 MobileShadow.SunLight.color = Color.white;
-                MobileShadow.SunLight.transform.rotation = Quaternion.Euler(24, 376, 0);
+                MobileShadow.SunLight.transform.rotation = Quaternion.Euler(24, -471, 0);
                 LightsGroup.SetActive(false);
                 break;
             case 2://night
@@ -100,6 +100,14 @@ public class DemoControl : MonoBehaviour
 	public void ChangeOpacity(float value)
 	{
 		MobileShadow.ShadowOpacity = value;
+
+        if(value == 0)
+        {
+            MobileShadow.enabled = false;
+        } else
+        {
+            MobileShadow.enabled = true;
+        }
 	}
 	
 	public void EnableFog(bool value)
